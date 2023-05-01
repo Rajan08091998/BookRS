@@ -11,11 +11,11 @@ app = Flask(__name__)
 def home():
     return render_template('home.html',df = (popular_df))
 
-# @app.route('/book_recommendation',methods=['GET','POST'])
-# def book_recommendation():
-#     book = request.form.get('book')
-#     data = recommend(book)
-#     return render_template('recommend.html',data=data)
+@app.route('/book_recommendation',methods=['GET','POST'])
+def book_recommendation():
+    book = request.form.get('book')
+    data,title_list = recommend(book)
+    return render_template('recommend.html',data=data,title_list=title_list)
 
 if __name__ == "__main__" :
     app.run(debug=True,host='0.0.0.0')
